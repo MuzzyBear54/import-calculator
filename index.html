@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#101b30">
-  <title>Israel Import Charges — EMS & DHL (v3)</title>
+  <title>Israel Import Charges — EMS & DHL (v4)</title>
   <style>
     :root { color-scheme: light; --bg:#f4f7fb;--surface:#fff;--ink:#142237;--muted:#637187;--line:#dce4ed;--accent:#2860cd;--accent2:#eaf1ff;--good:#147652;--shade:#eef3f9; }
     *{box-sizing:border-box} body{margin:0;background:var(--bg);font-family:Inter,system-ui,-apple-system,Segoe UI,Arial,sans-serif;color:var(--ink);line-height:1.45} main{max-width:960px;margin:auto;padding:34px 16px 60px}
@@ -14,7 +14,7 @@
     .tip{font-size:12px;color:var(--muted);margin:7px 0 0}.rates{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.rate-field input{font-variant-numeric:tabular-nums} .tag{background:var(--accent2);color:var(--accent);padding:5px 9px;border-radius:30px;font-size:12px;font-weight:750;white-space:nowrap} .note{color:var(--muted);font-size:13px;margin:13px 0 0}
     .results-heading{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:25px 0 13px}.results-heading h2{font-size:19px;margin:0}.results-heading button,.actions button{border:1px solid var(--line);background:white;color:var(--ink);border-radius:10px;min-height:39px;padding:7px 12px;font:inherit;font-size:13px;font-weight:650;cursor:pointer}.results-heading button:hover,.actions button:hover{border-color:#94afdc} .results{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px} .result-card{padding:22px;overflow:hidden;transition:box-shadow .15s}.result-card.cheapest{border-color:#9bd5c2;box-shadow:0 0 0 1px #acd9cb inset}.result-head{display:flex;justify-content:space-between;align-items:center;gap:8px}.result-head h3{font-size:17px;margin:0}.better{color:var(--good);font-size:12px;font-weight:800} .charge{font-size:33px;font-weight:800;letter-spacing:-.04em;margin:13px 0 0;font-variant-numeric:tabular-nums}.charge .currency{font-size:17px;font-weight:650;letter-spacing:0}.tier{color:var(--muted);font-size:12px;min-height:34px;margin:2px 0 13px} dl{margin:0;border-top:1px solid var(--line);padding-top:12px} dl>div{display:flex;justify-content:space-between;gap:12px;padding:6px 0;font-size:13px} dt{color:var(--muted)} dd{margin:0;font-weight:650;font-variant-numeric:tabular-nums;text-align:right}.total-row{border-top:1px solid var(--line);margin-top:7px;padding-top:11px;font-weight:750}.total-row dt{color:var(--ink)} .message{padding:17px 19px;border:1px dashed #b8c8db;color:var(--muted);border-radius:13px;background:#fff;font-size:14px;grid-column:1/-1} .footnote{margin:16px 2px;color:var(--muted);font-size:12px;line-height:1.65} .actions{margin:14px 0 0;display:flex;gap:8px;align-items:center;flex-wrap:wrap}.copy-state{color:var(--good);font-size:13px} .conversions{background:var(--shade);border-radius:11px;padding:11px 13px;margin-top:2px;color:#51637b;font-size:12px;font-variant-numeric:tabular-nums}
     .rate-buttons{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.rate-buttons button{border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:8px 11px;color:var(--ink);font-weight:650;cursor:pointer;font-size:12px}.rate-buttons button:hover{border-color:#94afdc}.rate-buttons button:disabled{opacity:.6;cursor:wait}.rate-source{font-size:11px;color:var(--muted);margin-top:5px;min-height:16px}.rate-message{background:#f1f6fe;border:1px solid #dce8fb;color:#445c7f;border-radius:10px;padding:11px 13px;font-size:12px;line-height:1.5;margin-top:14px}.rate-message.warning{background:#fff9ed;border-color:#efddba;color:#74501c}.rate-message.good{background:#edf8f2;border-color:#c6e8d4;color:#236b4b}.sources{font-size:12px;margin-top:9px}.sources a{color:var(--accent);text-decoration:underline;text-underline-offset:2px}
-    .optional{margin:14px 0 0;display:flex;align-items:center;gap:7px;font-size:13px;color:var(--muted)} .optional input{accent-color:var(--accent);width:16px;height:16px}.hidden{display:none!important} footer{margin-top:26px;color:var(--muted);font-size:12px} footer strong{color:#46556a}
+    .extra-rates{margin-top:13px;border-top:1px solid var(--line);padding-top:11px}.extra-rates summary{cursor:pointer;color:var(--accent);font-size:13px;font-weight:650;user-select:none}.extra-rate-grid{margin-top:14px}.optional{margin:14px 0 0;display:flex;align-items:center;gap:7px;font-size:13px;color:var(--muted)} .optional input{accent-color:var(--accent);width:16px;height:16px}.hidden{display:none!important} footer{margin-top:26px;color:var(--muted);font-size:12px} footer strong{color:#46556a}
     @media(max-width:640px){main{padding:24px 13px 40px}.panel{padding:17px}.fields,.results{grid-template-columns:1fr}.rates{grid-template-columns:1fr}.results-heading{align-items:flex-start}.result-card{padding:18px}.charge{font-size:31px}}
     @media print{body{background:white} main{padding:0}.panel,.result-card{box-shadow:none}.results-heading button,.actions{display:none}}
   </style>
@@ -30,14 +30,14 @@
   <section class="panel">
     <div class="panel-top"><h2>1. Order details</h2><span class="tag">Live calculation</span></div>
     <div class="fields">
-      <div class="field"><label for="product">Product price</label><div class="control"><input id="product" type="number" step="any" min="0" value="300" inputmode="decimal"><select id="productCurrency" aria-label="Product currency"><option>USD</option><option>THB</option><option>JPY</option><option>NIS</option></select></div></div>
-      <div class="field"><label for="shipping">Shipping price</label><div class="control"><input id="shipping" type="number" step="any" min="0" value="" placeholder="Enter shipping price" inputmode="decimal"><select id="shippingCurrency" aria-label="Shipping currency"><option>USD</option><option selected>THB</option><option>JPY</option><option>NIS</option></select></div></div>
+      <div class="field"><label for="product">Product price</label><div class="control"><input id="product" type="number" step="any" min="0" value="" placeholder="Enter product price" inputmode="decimal"><select id="productCurrency" aria-label="Product currency"><option value="USD">USD — US dollar</option><option value="EUR">EUR — Euro</option><option value="THB">THB — Thai baht</option><option value="JPY">JPY — Japanese yen</option><option value="CNY">CNY — Chinese yuan</option><option value="TWD">TWD — Taiwan dollar</option><option value="HKD">HKD — Hong Kong dollar</option><option value="PHP">PHP — Philippine peso</option><option value="NIS">NIS — Israeli shekel</option></select></div></div>
+      <div class="field"><label for="shipping">Shipping price</label><div class="control"><input id="shipping" type="number" step="any" min="0" value="" placeholder="Enter shipping price" inputmode="decimal"><select id="shippingCurrency" aria-label="Shipping currency"><option value="USD">USD — US dollar</option><option value="EUR">EUR — Euro</option><option value="THB">THB — Thai baht</option><option value="JPY">JPY — Japanese yen</option><option value="CNY">CNY — Chinese yuan</option><option value="TWD">TWD — Taiwan dollar</option><option value="HKD">HKD — Hong Kong dollar</option><option value="PHP">PHP — Philippine peso</option><option value="NIS">NIS — Israeli shekel</option></select></div></div>
     </div>
     <label class="optional" for="useSecond"><input id="useSecond" type="checkbox">Compare with a second shipping quote</label>
     <div class="fields hidden" id="secondBlock" style="margin-top:13px">
-      <div class="field"><label for="shipping2">Alternative shipping price</label><div class="control"><input id="shipping2" type="number" step="any" min="0" placeholder="Enter second quote" inputmode="decimal"><select id="shippingCurrency2" aria-label="Alternative shipping currency"><option>USD</option><option selected>THB</option><option>JPY</option><option>NIS</option></select></div></div>
+      <div class="field"><label for="shipping2">Alternative shipping price</label><div class="control"><input id="shipping2" type="number" step="any" min="0" placeholder="Enter second quote" inputmode="decimal"><select id="shippingCurrency2" aria-label="Alternative shipping currency"><option value="USD">USD — US dollar</option><option value="EUR">EUR — Euro</option><option value="THB">THB — Thai baht</option><option value="JPY">JPY — Japanese yen</option><option value="CNY">CNY — Chinese yuan</option><option value="TWD">TWD — Taiwan dollar</option><option value="HKD">HKD — Hong Kong dollar</option><option value="PHP">PHP — Philippine peso</option><option value="NIS">NIS — Israeli shekel</option></select></div></div>
     </div>
-    <p class="tip">The exemption threshold uses the <strong>product price alone</strong>. When applicable, VAT includes shipping.</p>
+    <p class="tip">Product and shipping fields start blank in USD every visit. The exemption threshold uses the <strong>product price alone</strong>. When applicable, VAT includes shipping.</p>
   </section>
 
   <section class="panel">
@@ -47,21 +47,31 @@
       <div class="field rate-field"><label for="usdThb">1 USD = ? THB</label><input id="usdThb" type="number" class="plain-input" step="any" min="0.000001" placeholder="Loading THB rate…" inputmode="decimal"><div class="rate-source" id="usdThbSource">Market rate • automatic</div></div>
       <div class="field rate-field"><label for="usdJpy">1 USD = ? JPY</label><input id="usdJpy" type="number" class="plain-input" step="any" min="0.000001" placeholder="Loading JPY rate…" inputmode="decimal"><div class="rate-source" id="usdJpySource">Market rate • automatic</div></div>
     </div>
+    <details id="extraRates" class="extra-rates"><summary>More currencies: EUR · CNY · TWD · HKD · PHP</summary><div class="rates extra-rate-grid">
+        <div class="field rate-field"><label for="usdCny">1 USD = ? CNY</label><input id="usdCny" type="number" class="plain-input" step="any" min="0.000001" placeholder="Loading CNY rate…" inputmode="decimal"><div class="rate-source" id="usdCnySource">Market rate • automatic</div></div>
+        <div class="field rate-field"><label for="usdTwd">1 USD = ? TWD</label><input id="usdTwd" type="number" class="plain-input" step="any" min="0.000001" placeholder="Loading TWD rate…" inputmode="decimal"><div class="rate-source" id="usdTwdSource">Market rate • automatic</div></div>
+        <div class="field rate-field"><label for="usdHkd">1 USD = ? HKD</label><input id="usdHkd" type="number" class="plain-input" step="any" min="0.000001" placeholder="Loading HKD rate…" inputmode="decimal"><div class="rate-source" id="usdHkdSource">Market rate • automatic</div></div>
+        <div class="field rate-field"><label for="usdPhp">1 USD = ? PHP</label><input id="usdPhp" type="number" class="plain-input" step="any" min="0.000001" placeholder="Loading PHP rate…" inputmode="decimal"><div class="rate-source" id="usdPhpSource">Market rate • automatic</div></div>
+        <div class="field rate-field"><label for="usdEur">1 USD = ? EUR</label><input id="usdEur" type="number" class="plain-input" step="any" min="0.000001" placeholder="Loading EUR rate…" inputmode="decimal"><div class="rate-source" id="usdEurSource">Market rate • automatic</div></div>
+    </div></details>
     <div class="rate-message" id="rateMessage" role="status" aria-live="polite">Fetching exchange rates…</div>
     <details id="rateDetails" style="margin-top:9px;font-size:12px;color:#637187"><summary style="cursor:pointer">Connection details</summary><div id="rateDetailsText" style="white-space:pre-wrap;overflow-wrap:anywhere;padding:7px 0"></div></details>
-    <p class="note">Rates refresh when the page opens, with independent backup services. Change any box to override that rate; “Restore automatic” removes manual overrides. Last successful rates are stored in this browser for offline use. A fallback market rate is only an estimate of the actual customs rate, which is determined when the parcel is cleared.</p>
+    <p class="note">Rates refresh when the page opens, with independent backup services. Expand “More currencies” for extra rates. Change any box to override that rate; “Restore automatic” removes manual overrides. Last successful rates are stored in this browser for offline use. A fallback market rate is only an estimate of the actual customs rate, which is determined when the parcel is cleared.</p>
     <p class="sources">Sources: <a href="https://frankfurter.dev/" target="_blank" rel="noopener noreferrer">Frankfurter (exchange-rate API)</a> · <a href="https://www.gov.il/en/service/exchange-rate" target="_blank" rel="noopener noreferrer">Israel Tax Authority customs-rate lookup</a></p>
   </section>
 
-  <div class="results-heading"><h2 id="resultsLabel">Estimated import charges</h2><button id="clear" type="button">Reset amounts</button></div>
-  <div id="results" class="results" aria-live="polite"><div class="message">Enter a shipping price; exchange rates will load automatically when online.</div></div>
+  <div class="results-heading"><h2 id="resultsLabel">Estimated import charges</h2><button id="clear" type="button">Clear order</button></div>
+  <div id="results" class="results" aria-live="polite"><div class="message">Enter your product and shipping prices to calculate. Exchange rates load automatically when online.</div></div>
   <div class="actions"><button id="copy" type="button">Copy detailed result</button><span id="copyState" class="copy-state" aria-live="polite"></span></div>
   <p class="footnote">These amounts are <strong>additional charges paid on import</strong> and <strong>do not include</strong> the product and shipping cost themselves. EMS thresholds follow the USD product price; DHL uses the USD product price for the exemption and USD CIF (product + shipping) for subsequent brackets. Formula applied exactly as supplied, not independently verified current Israeli fee schedules. Automatic customs conversion uses the usual previous-Friday rate plus 0.5%; it does not account for exceptional customs rules (including a cumulative 3% exchange-rate movement) or the exact date a future parcel is cleared. Other charges (if applicable) are excluded.</p>
   <footer><strong>Shareable, no account required.</strong> Calculations run on your device. Internet access is required to refresh rates, but saved rates and manual input work offline. No order amounts are sent to any server.</footer>
 </main>
 <script>
 'use strict';
-const ids = ['product','productCurrency','shipping','shippingCurrency','useSecond','shipping2','shippingCurrency2','usdNis','usdThb','usdJpy'];
+const marketCurrencies=['THB','JPY','CNY','TWD','HKD','PHP','EUR'];
+const rateIdFor = currency => 'usd' + currency.slice(0,1) + currency.slice(1).toLowerCase();
+const rateIds=['usdNis',...marketCurrencies.map(rateIdFor)];
+const ids = ['product','productCurrency','shipping','shippingCurrency','useSecond','shipping2','shippingCurrency2',...rateIds];
 const el = Object.fromEntries(ids.map(id => [id,document.getElementById(id)]));
 const results = document.getElementById('results');
 const money = n => Number.isFinite(n) ? new Intl.NumberFormat('en-IL',{minimumFractionDigits:2,maximumFractionDigits:2}).format(n) : '—';
@@ -70,11 +80,9 @@ const nval = node => node.value.trim()==='' ? NaN : Number(node.value);
 const pos = n => Number.isFinite(n) && n>0;
 const nonneg = n => Number.isFinite(n) && n>=0;
 function amountUSD(n, currency, r) {
-  if (currency==='USD') return n;
-  if (currency==='NIS') return n/r.usdNis;
-  if (currency==='THB') return n/r.usdThb;
-  if (currency==='JPY') return n/r.usdJpy;
-  return NaN;
+  if(currency==='USD')return n;
+  if(currency==='NIS')return n/r.usdNis;
+  return n/r[rateIdFor(currency)];
 }
 function calcEMS(P,S,R){
   const V=0.18*(P+S)*R;
@@ -97,16 +105,23 @@ function calcDHL(P,S,R){
   return {label:'DHL',total:V+a+b+c,vat:V,fee1:a,fee2:b,fee3:c,tier};
 }
 function state(){
-  const r={usdNis:nval(el.usdNis),usdThb:nval(el.usdThb),usdJpy:nval(el.usdJpy)};
+  const r=Object.fromEntries(rateIds.map(id=>[id,nval(el[id])]));
   const P0=nval(el.product),S0=nval(el.shipping),S20=nval(el.shipping2);
   let missing=[];
-  if(!nonneg(P0)) missing.push('a valid, nonnegative product price');
-  if(!nonneg(S0)) missing.push('a valid, nonnegative shipping price');
-  if(!pos(r.usdNis)) missing.push('the USD→NIS customs rate');
-  const currencies = [el.productCurrency.value,el.shippingCurrency.value];
-  if(el.useSecond.checked){if(!nonneg(S20)) missing.push('a valid second shipping price');currencies.push(el.shippingCurrency2.value);}
-  if(currencies.includes('THB') && !pos(r.usdThb))missing.push('the USD→THB rate');
-  if(currencies.includes('JPY') && !pos(r.usdJpy))missing.push('the USD→JPY rate');
+  if(!nonneg(P0))missing.push('a valid, nonnegative product price');
+  if(!nonneg(S0))missing.push('a valid, nonnegative shipping price');
+  if(!pos(r.usdNis))missing.push('the USD→NIS customs rate');
+  const currencies=[el.productCurrency.value,el.shippingCurrency.value];
+  if(el.useSecond.checked){
+    if(!nonneg(S20))missing.push('a valid second shipping price');
+    currencies.push(el.shippingCurrency2.value);
+  }
+  for(const c of new Set(currencies)){
+    if(c!=='USD'&&c!=='NIS'&&!pos(r[rateIdFor(c)])){
+      missing.push(`the USD→${c} rate`);
+      if(['CNY','TWD','HKD','PHP','EUR'].includes(c)) document.getElementById('extraRates').open=true;
+    }
+  }
   if(missing.length)return {missing};
   const P=amountUSD(P0,el.productCurrency.value,r),S=amountUSD(S0,el.shippingCurrency.value,r);
   const quotes=[{P,S,label:'Shipping quote 1',ems:calcEMS(P,S,r.usdNis),dhl:calcDHL(P,S,r.usdNis)}];
@@ -134,8 +149,7 @@ function render(){
   results.innerHTML=cards.join('');
   lastText=`Estimated Israeli import charges, using user-defined formulas and exchange rate 1 USD = ₪${s.r.usdNis}\n${txt.join('\n')}`;
 }
-const storageKey='israel-import-calculator-v2';
-const rateIds=['usdNis','usdThb','usdJpy'];
+const storageKey='israel-import-calculator-v4';
 const overrides=Object.fromEntries(rateIds.map(k=>[k,false]));
 let rateMeta={},lastSuccess={};
 let rateBusy=false;
@@ -144,17 +158,27 @@ const refreshBtn=document.getElementById('refreshRates');
 const autoBtn=document.getElementById('autoRates');
 function save(){
   try {localStorage.setItem(storageKey,JSON.stringify({
-    fields:Object.fromEntries(ids.map(id=>[id,el[id].type==='checkbox'?el[id].checked:el[id].value])),
+    rates:Object.fromEntries(rateIds.map(id=>[id,el[id].value])),
     overrides,rateMeta,lastSuccess
   }));}catch(e){}
 }
 try{
   const saved=JSON.parse(localStorage.getItem(storageKey)||'null');
-  const old=saved||JSON.parse(localStorage.getItem('israel-import-calculator-v1')||'null');
-  const fields=saved?.fields||old;
-  if(fields)for(const id of ids){if(fields[id]!==undefined){if(el[id].type==='checkbox')el[id].checked=Boolean(fields[id]);else el[id].value=fields[id];}}
-  if(saved){for(const k of rateIds)overrides[k]=Boolean(saved.overrides?.[k]);rateMeta=saved.rateMeta||{};lastSuccess=saved.lastSuccess||{};}
+  const prior=JSON.parse(localStorage.getItem('israel-import-calculator-v2')||'null');
+  const legacy=JSON.parse(localStorage.getItem('israel-import-calculator-v1')||'null');
+  const data=saved||prior||legacy;
+  if(data){
+    const persistedRates=data.rates||data.fields||data;
+    for(const id of rateIds){
+      if(persistedRates[id]!==undefined)el[id].value=persistedRates[id];
+      overrides[id]=Boolean(data.overrides?.[id]);
+    }
+    rateMeta=data.rateMeta||{};
+    lastSuccess=data.lastSuccess||{};
+  }
 }catch(e){}
+// Order values and selected currencies deliberately are NOT restored from storage.
+// Each visit begins with two blank USD fields; only rate data is cached.
 function updateSourceLabels(){
   for(const k of rateIds){
     const node=document.getElementById(k+'Source');
@@ -223,24 +247,55 @@ async function firstValid(sources,description){
   catch(e){throw new Error(`${description}: ${briefError(e)}`);}
 }
 async function fetchLatestRates(){
+  const allCodes=[...marketCurrencies,'ILS'];
+  // A provider can lack one of the extra currencies. Keep any valid quotes
+  // instead of discarding ALL automatic rates because one currency is missing.
   const sources=currencyApiUrls('latest').map((url,i)=>({
     name:i?'Currency API Cloudflare':'Currency API jsDelivr',url,
-    parse:data=>{const x=decodeCurrencyApi(data,['THB','JPY','ILS']);return {...x,source:i?'Currency API Cloudflare':'Currency API jsDelivr'};}
+    parse:data=>{
+      if(!data||!isIsoDate(data.date)||!data.usd)throw new Error('Unexpected Currency API format');
+      const values={};
+      for(const c of allCodes)if(pos(Number(data.usd[c.toLowerCase()])))values[c]=Number(data.usd[c.toLowerCase()]);
+      return {date:data.date,values,source:i?'Currency API Cloudflare':'Currency API jsDelivr'};
+    }
   }));
-  const p=new URLSearchParams({base:'USD',quotes:'THB,JPY,ILS'});
+  const p=new URLSearchParams({base:'USD',quotes:allCodes.join(',')});
   sources.push({name:'Frankfurter',url:'https://api.frankfurter.dev/v2/rates?'+p,
     parse:rows=>{
       if(!Array.isArray(rows))throw new Error('Unexpected Frankfurter format');
       const values={},dates=[];
-      for(const c of ['THB','JPY','ILS']){
+      for(const c of allCodes){
         const row=rows.find(r=>rateRow(r,c));
-        if(!row)throw new Error('Missing '+c);
-        values[c]=checked(row.rate,c);dates.push(row.date);
+        if(row){values[c]=Number(row.rate);dates.push(row.date);}
       }
       return {date:dates.sort()[0],values,source:'Frankfurter blended'};
     }
   });
-  return await firstValid(sources,'Latest market rates');
+  const jobs=sources.map(async ({name,url,parse})=>{
+    try{
+      const x=await parse(await fetchJson(url));
+      if(!Object.keys(x.values).length)throw new Error('No supported currencies');
+      return x;
+    }catch(e){throw new Error(`${name}: ${briefError(e)}`);}
+  });
+  // Return immediately when one provider supplies everything.
+  try{
+    return await Promise.any(jobs.map(p=>p.then(x=>{
+      if(!allCodes.every(c=>pos(x.values[c])))throw new Error(`${x.source}: partial coverage`);
+      return x;
+    })));
+  }catch(e){
+    // Otherwise combine whatever is available across independent sources.
+    const outcomes=await Promise.allSettled(jobs);
+    const good=outcomes.filter(x=>x.status==='fulfilled').map(x=>x.value);
+    if(!good.length)throw new Error('Latest market rates: '+outcomes.filter(x=>x.status==='rejected').map(x=>briefError(x.reason)).join(' | '));
+    good.sort((a,b)=>Object.keys(b.values).length-Object.keys(a.values).length);
+    const values={},perCurrency={};
+    for(const x of good)for(const c of allCodes)if(!pos(values[c])&&pos(x.values[c])){
+      values[c]=x.values[c];perCurrency[c]={date:x.date,source:x.source};
+    }
+    return {values,perCurrency,source:good.map(x=>x.source).join(' / '),date:good[0].date};
+  }
 }
 async function fetchCustomsBOI(){
   const {friday,from}=localCustomsFriday();
@@ -275,7 +330,7 @@ function applyAuto(id,value,meta){
 async function refreshRates(){
   if(rateBusy)return;
   rateBusy=true;refreshBtn.disabled=true;refreshBtn.textContent='↻ Updating…';
-  message('Looking up the Bank of Israel customs rate and live currency quotes (with backups)…');
+  message('Looking up the Bank of Israel customs rate and market currencies (with backups)…');
   const details=document.getElementById('rateDetailsText');details.textContent='Requesting currency services…';
   const latestPromise=fetchLatestRates();
   const historicalPromise=fetchCustomsHistoricalProxy();
@@ -292,11 +347,16 @@ async function refreshRates(){
   }
   if(latest.status==='fulfilled'){
     const x=latest.value;
-    for(const [id,c] of [['usdThb','THB'],['usdJpy','JPY']]){
-      applyAuto(id,x.values[c],{date:x.date,source:x.source,quality:'market',fetchedAt:Date.now()});
+    let count=0;
+    for(const c of marketCurrencies){
+      if(!pos(x.values[c]))continue;
+      const id=rateIdFor(c);
+      const meta=x.perCurrency?.[c]||x;
+      applyAuto(id,x.values[c],{date:meta.date,source:meta.source,quality:'market',fetchedAt:Date.now()});
+      count++;
     }
-    updated.push('THB and JPY');
-    if(!customs)customs=latestProxy(x);
+    if(count)updated.push(count+' market currencies');
+    if(!customs&&pos(x.values.ILS))customs=latestProxy(x);
   }else diagnostics.push('Market rates: '+briefError(latest.reason));
   if(customs){applyAuto('usdNis',customs.value,customs.meta);updated.push('USD/NIS');}
   rateBusy=false;refreshBtn.disabled=false;refreshBtn.textContent='↻ Refresh rates';
@@ -305,7 +365,7 @@ async function refreshRates(){
   const dated=rateMeta.usdNis?.friday===localCustomsFriday().friday;
   const staleCustoms=rateMeta.usdNis&&(!dated||quality==='latest-proxy');
   if(missing.length){
-    message('Some rates could not be loaded. '+(updated.length?'Updated '+updated.join(' and ')+'. ':'')+'Enter missing rates manually. If this is a ChatGPT file preview, download the HTML and open it in a normal browser, or host it on GitHub Pages.','warning');
+    message('Some rates could not be loaded. '+(updated.length?'Updated '+updated.join(' and ')+'. ':'')+'Expand More currencies or enter missing rates manually. If this is a ChatGPT file preview, download the HTML and open it in a normal browser, or host it on GitHub Pages.','warning');
   }else if(quality==='latest-proxy'&&!overrides.usdNis){
     message('Rates loaded, but the customs rate is only a current-market approximation (+0.5%), not the previous Friday’s Bank of Israel reference. Check or override it before paying.','warning');
   }else if(quality==='historical-proxy'&&!overrides.usdNis){
@@ -339,6 +399,7 @@ autoBtn.addEventListener('click',()=>{
 });
 document.getElementById('clear').addEventListener('click',()=>{
   el.product.value='';el.shipping.value='';el.shipping2.value='';el.useSecond.checked=false;
+  el.productCurrency.value='USD';el.shippingCurrency.value='USD';el.shippingCurrency2.value='USD';
   save();render();el.product.focus();
 });
 document.getElementById('copy').addEventListener('click',async()=>{

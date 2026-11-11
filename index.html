@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#101b30">
-  <title>Israel Import Charges — EMS & DHL (v4)</title>
+  <title>Israel Import Charges — EMS, DHL & FedEx (v5)</title>
   <style>
     :root { color-scheme: light; --bg:#f4f7fb;--surface:#fff;--ink:#142237;--muted:#637187;--line:#dce4ed;--accent:#2860cd;--accent2:#eaf1ff;--good:#147652;--shade:#eef3f9; }
     *{box-sizing:border-box} body{margin:0;background:var(--bg);font-family:Inter,system-ui,-apple-system,Segoe UI,Arial,sans-serif;color:var(--ink);line-height:1.45} main{max-width:960px;margin:auto;padding:34px 16px 60px}
@@ -12,10 +12,12 @@
     .panel,.result-card{background:var(--surface);border:1px solid var(--line);border-radius:18px;box-shadow:0 5px 18px rgba(23,41,77,.035)} .panel{padding:22px;margin-bottom:16px} .panel-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:15px}.panel-top h2{font-size:17px;margin:0;letter-spacing:-.015em} .panel-top small{color:var(--muted)}
     .fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px} .field label{display:block;font-size:13px;font-weight:650;color:#46556a;margin:0 0 7px} .control{display:flex;gap:8px}.control input,.control select,.plain-input{border:1px solid #cad5e3;background:white;border-radius:10px;height:44px;padding:0 12px;color:var(--ink);font-size:16px;min-width:0}.control input{flex:1;width:100%}.control select{width:98px;flex-shrink:0}.plain-input{width:100%} input:focus,select:focus{outline:3px solid #cfe0ff;border-color:var(--accent)}
     .tip{font-size:12px;color:var(--muted);margin:7px 0 0}.rates{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.rate-field input{font-variant-numeric:tabular-nums} .tag{background:var(--accent2);color:var(--accent);padding:5px 9px;border-radius:30px;font-size:12px;font-weight:750;white-space:nowrap} .note{color:var(--muted);font-size:13px;margin:13px 0 0}
-    .results-heading{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:25px 0 13px}.results-heading h2{font-size:19px;margin:0}.results-heading button,.actions button{border:1px solid var(--line);background:white;color:var(--ink);border-radius:10px;min-height:39px;padding:7px 12px;font:inherit;font-size:13px;font-weight:650;cursor:pointer}.results-heading button:hover,.actions button:hover{border-color:#94afdc} .results{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px} .result-card{padding:22px;overflow:hidden;transition:box-shadow .15s}.result-card.cheapest{border-color:#9bd5c2;box-shadow:0 0 0 1px #acd9cb inset}.result-head{display:flex;justify-content:space-between;align-items:center;gap:8px}.result-head h3{font-size:17px;margin:0}.better{color:var(--good);font-size:12px;font-weight:800} .charge{font-size:33px;font-weight:800;letter-spacing:-.04em;margin:13px 0 0;font-variant-numeric:tabular-nums}.charge .currency{font-size:17px;font-weight:650;letter-spacing:0}.tier{color:var(--muted);font-size:12px;min-height:34px;margin:2px 0 13px} dl{margin:0;border-top:1px solid var(--line);padding-top:12px} dl>div{display:flex;justify-content:space-between;gap:12px;padding:6px 0;font-size:13px} dt{color:var(--muted)} dd{margin:0;font-weight:650;font-variant-numeric:tabular-nums;text-align:right}.total-row{border-top:1px solid var(--line);margin-top:7px;padding-top:11px;font-weight:750}.total-row dt{color:var(--ink)} .message{padding:17px 19px;border:1px dashed #b8c8db;color:var(--muted);border-radius:13px;background:#fff;font-size:14px;grid-column:1/-1} .footnote{margin:16px 2px;color:var(--muted);font-size:12px;line-height:1.65} .actions{margin:14px 0 0;display:flex;gap:8px;align-items:center;flex-wrap:wrap}.copy-state{color:var(--good);font-size:13px} .conversions{background:var(--shade);border-radius:11px;padding:11px 13px;margin-top:2px;color:#51637b;font-size:12px;font-variant-numeric:tabular-nums}
+    .results-heading{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:25px 0 13px}.results-heading h2{font-size:19px;margin:0}.results-heading button,.actions button{border:1px solid var(--line);background:white;color:var(--ink);border-radius:10px;min-height:39px;padding:7px 12px;font:inherit;font-size:13px;font-weight:650;cursor:pointer}.results-heading button:hover,.actions button:hover{border-color:#94afdc} .results{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px} .result-card{padding:22px;overflow:hidden;transition:box-shadow .15s}.result-card.cheapest{border-color:#9bd5c2;box-shadow:0 0 0 1px #acd9cb inset}.result-head{display:flex;justify-content:space-between;align-items:center;gap:8px}.result-head h3{font-size:17px;margin:0}.better{color:var(--good);font-size:12px;font-weight:800} .charge{font-size:33px;font-weight:800;letter-spacing:-.04em;margin:13px 0 0;font-variant-numeric:tabular-nums}.charge .currency{font-size:17px;font-weight:650;letter-spacing:0}.tier{color:var(--muted);font-size:12px;min-height:34px;margin:2px 0 13px} dl{margin:0;border-top:1px solid var(--line);padding-top:12px} dl>div{display:flex;justify-content:space-between;gap:12px;padding:6px 0;font-size:13px} dt{color:var(--muted)} dd{margin:0;font-weight:650;font-variant-numeric:tabular-nums;text-align:right}.total-row{border-top:1px solid var(--line);margin-top:7px;padding-top:11px;font-weight:750}.total-row dt{color:var(--ink)} .message{padding:17px 19px;border:1px dashed #b8c8db;color:var(--muted);border-radius:13px;background:#fff;font-size:14px;grid-column:1/-1} .footnote{margin:16px 2px;color:var(--muted);font-size:12px;line-height:1.65} .actions{margin:14px 0 0;display:flex;gap:8px;align-items:center;flex-wrap:wrap}.copy-state{color:var(--good);font-size:13px} .conversions{background:var(--shade);border-radius:11px;padding:11px 13px;margin-top:2px;color:#51637b;font-size:12px;font-variant-numeric:tabular-nums}
     .rate-buttons{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.rate-buttons button{border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:8px 11px;color:var(--ink);font-weight:650;cursor:pointer;font-size:12px}.rate-buttons button:hover{border-color:#94afdc}.rate-buttons button:disabled{opacity:.6;cursor:wait}.rate-source{font-size:11px;color:var(--muted);margin-top:5px;min-height:16px}.rate-message{background:#f1f6fe;border:1px solid #dce8fb;color:#445c7f;border-radius:10px;padding:11px 13px;font-size:12px;line-height:1.5;margin-top:14px}.rate-message.warning{background:#fff9ed;border-color:#efddba;color:#74501c}.rate-message.good{background:#edf8f2;border-color:#c6e8d4;color:#236b4b}.sources{font-size:12px;margin-top:9px}.sources a{color:var(--accent);text-decoration:underline;text-underline-offset:2px}
     .extra-rates{margin-top:13px;border-top:1px solid var(--line);padding-top:11px}.extra-rates summary{cursor:pointer;color:var(--accent);font-size:13px;font-weight:650;user-select:none}.extra-rate-grid{margin-top:14px}.optional{margin:14px 0 0;display:flex;align-items:center;gap:7px;font-size:13px;color:var(--muted)} .optional input{accent-color:var(--accent);width:16px;height:16px}.hidden{display:none!important} footer{margin-top:26px;color:var(--muted);font-size:12px} footer strong{color:#46556a}
-    @media(max-width:640px){main{padding:24px 13px 40px}.panel{padding:17px}.fields,.results{grid-template-columns:1fr}.rates{grid-template-columns:1fr}.results-heading{align-items:flex-start}.result-card{padding:18px}.charge{font-size:31px}}
+    .weightfield{max-width:280px;margin-top:14px}.fee-intro{font-size:13px;color:var(--muted);margin:0 0 12px}.fee-carriers{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.fee-carrier{border:1px solid var(--line);border-radius:13px;background:#fbfdff;min-width:0}.fee-carrier summary{font-weight:750;cursor:pointer;padding:13px 14px;font-size:14px}.fee-carrier summary small{font-weight:400;color:var(--muted);display:block;margin-top:4px}.fee-list{padding:0 10px 12px}.fee-item{border-top:1px solid var(--line);padding:10px 4px}.fee-row{display:flex;align-items:flex-start;gap:9px;font-size:13px;line-height:1.4}.fee-row input[type=checkbox]{width:17px;height:17px;accent-color:var(--accent);margin:2px 0 0;flex-shrink:0}.fee-text{flex:1}.fee-item .fee-note{display:block;color:var(--muted);font-size:11px;margin-top:4px}.fee-params{margin:8px 0 0 26px;display:flex;align-items:center;flex-wrap:wrap;gap:6px}.fee-params label{font-size:11px;color:var(--muted)}.fee-params input{width:90px;max-width:100%;border:1px solid #cad5e3;border-radius:8px;height:34px;padding:5px 7px;font-size:14px}.fee-params input:focus{outline:2px solid #cfe0ff}.fee-total{color:#174c80;font-size:12px;font-weight:700;margin:4px 0 0 26px}.warning-line{background:#fff7e8;border:1px solid #e9d09b;border-radius:9px;padding:9px;margin-top:9px;color:#7a5420;font-size:12px}.fee-source{font-size:11px;color:var(--muted);padding:10px 14px;border-top:1px solid var(--line)}.fee-source a{color:var(--accent)}.service-charges{border-top:1px solid var(--line);margin-top:5px;padding-top:8px}.extra-pill{color:#174c80;font-size:11px;font-weight:750}.method-note{font-size:12px;color:var(--muted);line-height:1.6;margin:12px 0 0}.subtle-strong{font-weight:700;color:#35465b} 
+    @media(max-width:840px){.fee-carriers{grid-template-columns:1fr}.results{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(max-width:640px){main{padding:24px 13px 40px}.panel{padding:17px}.fields,.results,.fee-carriers{grid-template-columns:1fr}.rates{grid-template-columns:1fr}.results-heading{align-items:flex-start}.result-card{padding:18px}.charge{font-size:31px}}
     @media print{body{background:white} main{padding:0}.panel,.result-card{box-shadow:none}.results-heading button,.actions{display:none}}
   </style>
 </head>
@@ -24,7 +26,7 @@
   <header>
     <div class="eyebrow">Personal import calculator</div>
     <h1>Import charges, without the guesswork.</h1>
-    <p class="sub">Estimate Israeli EMS and DHL charges from your fee rules. Currency rates are fetched automatically from multiple sources, and you can adjust any rate manually.</p>
+    <p class="sub">Compare Israeli EMS, DHL and FedEx import charges, including conditional fees. Currency rates update automatically, with manual overrides.</p>
   </header>
 
   <section class="panel">
@@ -33,6 +35,7 @@
       <div class="field"><label for="product">Product price</label><div class="control"><input id="product" type="number" step="any" min="0" value="" placeholder="Enter product price" inputmode="decimal"><select id="productCurrency" aria-label="Product currency"><option value="USD">USD — US dollar</option><option value="EUR">EUR — Euro</option><option value="THB">THB — Thai baht</option><option value="JPY">JPY — Japanese yen</option><option value="CNY">CNY — Chinese yuan</option><option value="TWD">TWD — Taiwan dollar</option><option value="HKD">HKD — Hong Kong dollar</option><option value="PHP">PHP — Philippine peso</option><option value="NIS">NIS — Israeli shekel</option></select></div></div>
       <div class="field"><label for="shipping">Shipping price</label><div class="control"><input id="shipping" type="number" step="any" min="0" value="" placeholder="Enter shipping price" inputmode="decimal"><select id="shippingCurrency" aria-label="Shipping currency"><option value="USD">USD — US dollar</option><option value="EUR">EUR — Euro</option><option value="THB">THB — Thai baht</option><option value="JPY">JPY — Japanese yen</option><option value="CNY">CNY — Chinese yuan</option><option value="TWD">TWD — Taiwan dollar</option><option value="HKD">HKD — Hong Kong dollar</option><option value="PHP">PHP — Philippine peso</option><option value="NIS">NIS — Israeli shekel</option></select></div></div>
     </div>
+    <div class="field weightfield"><label for="weightKg">Billable weight, kg <span style="font-size:11px;font-weight:400;color:#637187">(optional)</span></label><input id="weightKg" type="number" step="0.01" min="0" class="plain-input" placeholder="For FedEx / storage fees" inputmode="decimal"><p class="tip">For FedEx ≤$75, leaving weight blank assumes ≤5 kg; enter billable weight to check the exception. Used for storage and handling calculations.</p></div>
     <label class="optional" for="useSecond"><input id="useSecond" type="checkbox">Compare with a second shipping quote</label>
     <div class="fields hidden" id="secondBlock" style="margin-top:13px">
       <div class="field"><label for="shipping2">Alternative shipping price</label><div class="control"><input id="shipping2" type="number" step="any" min="0" placeholder="Enter second quote" inputmode="decimal"><select id="shippingCurrency2" aria-label="Alternative shipping currency"><option value="USD">USD — US dollar</option><option value="EUR">EUR — Euro</option><option value="THB">THB — Thai baht</option><option value="JPY">JPY — Japanese yen</option><option value="CNY">CNY — Chinese yuan</option><option value="TWD">TWD — Taiwan dollar</option><option value="HKD">HKD — Hong Kong dollar</option><option value="PHP">PHP — Philippine peso</option><option value="NIS">NIS — Israeli shekel</option></select></div></div>
@@ -60,10 +63,17 @@
     <p class="sources">Sources: <a href="https://frankfurter.dev/" target="_blank" rel="noopener noreferrer">Frankfurter (exchange-rate API)</a> · <a href="https://www.gov.il/en/service/exchange-rate" target="_blank" rel="noopener noreferrer">Israel Tax Authority customs-rate lookup</a></p>
   </section>
 
+  <section class="panel" id="extrasPanel">
+    <div class="panel-top"><h2>3. Optional import charges</h2><span class="tag">Select only when applicable</span></div>
+    <p class="fee-intro">Expand a carrier to add conditional destination-side fees. All are initially off. Storage takes <strong>total days since arrival</strong>, not just billable days. Government certificate costs not specified by the carriers can be entered manually.</p>
+    <div id="feeCarriers" class="fee-carriers"></div>
+    <p class="method-note">These fees are <strong>not transportation surcharges</strong> (e.g., bulky package, fuel, volumetric weight). Enter all carrier transportation surcharges within your shipping quotation, not here. FedEx special clearance replaces its normal clearance charge rather than being added twice. Sources and limitations appear under each carrier.</p>
+  </section>
+
   <div class="results-heading"><h2 id="resultsLabel">Estimated import charges</h2><button id="clear" type="button">Clear order</button></div>
   <div id="results" class="results" aria-live="polite"><div class="message">Enter your product and shipping prices to calculate. Exchange rates load automatically when online.</div></div>
   <div class="actions"><button id="copy" type="button">Copy detailed result</button><span id="copyState" class="copy-state" aria-live="polite"></span></div>
-  <p class="footnote">These amounts are <strong>additional charges paid on import</strong> and <strong>do not include</strong> the product and shipping cost themselves. EMS thresholds follow the USD product price; DHL uses the USD product price for the exemption and USD CIF (product + shipping) for subsequent brackets. Formula applied exactly as supplied, not independently verified current Israeli fee schedules. Automatic customs conversion uses the usual previous-Friday rate plus 0.5%; it does not account for exceptional customs rules (including a cumulative 3% exchange-rate movement) or the exact date a future parcel is cleared. Other charges (if applicable) are excluded.</p>
+  <p class="footnote">These are estimated <strong>destination-side import charges</strong>, excluding the product and transportation prices. EMS and DHL baseline calculations retain the user-supplied models, except the tax-exempt EMS clearance fee of ₪35.40. FedEx follows its published personal-import tariff and uses CIF as the fee-bracket customs value and product price for the tax exemption. Listed special fees are conditional; some can replace other fees, and permit/certificate costs may be additional. DHL optional-fee VAT is enabled by default but can be disabled to match the invoice. Do not assume every listed fee applies. EMS special-services and storage information come from a different/later general-post schedule and are <strong>marked as provisional</strong>. Automatic customs conversion is an estimate (previous-Friday BOI reference +0.5%) and may differ from the rate at clearance. VAT-exempt status does not mean clearance-service fees are necessarily waived. Excludes goods-specific customs duties or purchase tax.</p>
   <footer><strong>Shareable, no account required.</strong> Calculations run on your device. Internet access is required to refresh rates, but saved rates and manual input work offline. No order amounts are sent to any server.</footer>
 </main>
 <script>
@@ -71,7 +81,7 @@
 const marketCurrencies=['THB','JPY','CNY','TWD','HKD','PHP','EUR'];
 const rateIdFor = currency => 'usd' + currency.slice(0,1) + currency.slice(1).toLowerCase();
 const rateIds=['usdNis',...marketCurrencies.map(rateIdFor)];
-const ids = ['product','productCurrency','shipping','shippingCurrency','useSecond','shipping2','shippingCurrency2',...rateIds];
+const ids = ['product','productCurrency','shipping','shippingCurrency','weightKg','useSecond','shipping2','shippingCurrency2',...rateIds];
 const el = Object.fromEntries(ids.map(id => [id,document.getElementById(id)]));
 const results = document.getElementById('results');
 const money = n => Number.isFinite(n) ? new Intl.NumberFormat('en-IL',{minimumFractionDigits:2,maximumFractionDigits:2}).format(n) : '—';
@@ -84,54 +94,205 @@ function amountUSD(n, currency, r) {
   if(currency==='NIS')return n/r.usdNis;
   return n/r[rateIdFor(currency)];
 }
+// Baseline models. Service fees are shown separately from the import VAT.
 function calcEMS(P,S,R){
-  const V=0.18*(P+S)*R;
-  if(P<=75) return {label:'EMS',total:0,vat:0,service:0,credit:0,serviceVat:0,fixed:0,tier:'Product price ≤ $75 · exempt under your model'};
-  const credit=Math.max(20,0.02*V);
-  const service=P>1000?154:69;
+  if(P<=75)return {label:'EMS',vat:0,base:[['Tax-exempt EMS clearance service (₪30 + VAT)',35.40]],tier:'Product ≤ $75 · import VAT exempt; EMS clearance service may apply'};
+  const V=0.18*(P+S)*R, credit=Math.max(20,0.02*V),service=P>1000?154:69;
   const fixed=P<=100?0:P<=500?21:P<=1000?70:90;
-  const serviceVat=0.18*(service+credit);
-  return {label:'EMS',total:V+service+credit+serviceVat+fixed,vat:V,service,credit,serviceVat,fixed,tier:P<=100?'$75 < product ≤ $100':P<=500?'$100 < product ≤ $500':P<=1000?'$500 < product ≤ $1,000':'Product > $1,000'};
+  return {label:'EMS',vat:V,base:[['EMS clearance (before VAT)',service],['Credit allocation fee',credit],['VAT on clearance and credit',0.18*(service+credit)],['Government charges',fixed]],tier:P<=100?'$75 < product ≤ $100':P<=500?'$100 < product ≤ $500':P<=1000?'$500 < product ≤ $1,000':'Product > $1,000'};
 }
 function calcDHL(P,S,R){
-  const cif=P+S, V=0.18*cif*R;
-  if(P<=75) return {label:'DHL',total:0,vat:0,fee1:0,fee2:0,fee3:0,tier:'Product price ≤ $75 · exempt under your model'};
+  const cif=P+S,V=P<=75?0:0.18*cif*R;
+  if(P<=75)return {label:'DHL',vat:0,base:[],tier:'Product ≤ $75 · baseline exempt'};
   let a,b,c,tier;
   if(cif<=100){a=31;b=0;c=0;tier='$75 < product and CIF ≤ $100';}
   else if(cif<=150){a=31;b=20.5;c=0;tier='$100 < CIF ≤ $150';}
   else if(cif<=500){a=71.6;b=20.5;c=0;tier='$150 < CIF ≤ $500';}
   else if(cif<=1000){a=71.6;b=20.5;c=48.5;tier='$500 < CIF ≤ $1,000';}
   else {a=361.08;b=41.5;c=48.5;tier='CIF > $1,000';}
-  return {label:'DHL',total:V+a+b+c,vat:V,fee1:a,fee2:b,fee3:c,tier};
+  return {label:'DHL',vat:V,base:[['DHL base charge',a],['DHL supplemental charge',b],['DHL additional charge',c]],tier};
 }
+// FedEx personal-import prices come from the VAT-inclusive table (no extra 18% on service fees).
+function calcFedEx(P,S,R,kg,special){
+  const cif=P+S,vat=P<=75?0:0.18*cif*R;
+  let clearance=0,tier='Product ≤ $75 · ordinary FedEx clearance exempt';
+  if(P<=75){if((pos(kg)&&kg>5)||special){clearance=76.7;tier='≤ $75 · special clearance / billable weight > 5 kg';}}
+  else if(cif>1000){clearance=355;tier='Customs value > $1,000 · detailed clearance';}
+  else if(special){clearance=270.3;tier='Special clearance / permit / inspection';}
+  else{clearance=116;tier='Ordinary personal clearance';}
+  const computer= P<=75?0:cif>1000?41:cif>100?21:0;
+  const security=P<=75?0:cif>500?49:0;
+  return {label:'FedEx',vat,base:[['Personal import clearance (VAT included)',clearance],['Customs computer fee',computer],['Customs security fee',security]],tier};
+}
+const tariffLinks={
+  EMS:'https://israelpost.co.il/media/3431/10-1037-13-hoveret-mehironim-iski-dec22_06.pdf',
+  post:'https://doar.israelpost.co.il/he/content/cargo-rates',
+  DHL:'https://mydhl.express.dhl/content/dam/downloads/il/en/rate-guide/service_and%20rate_guide_il_en_2026.pdf.coredownload.pdf',
+  FedEx:'https://www.fedex.com/he-il/shipping/import-fees.html'
+};
+// All fixed postal amounts include service VAT; EMS special-service fees are provisional.
+// 'days' means elapsed calendar days since arrival, not billed days.
+const feeDefs={
+  EMS:[
+    {id:'storage',label:'Parcel held in postal storage',type:'ems-storage',note:'Provisional: general Post tariff ₪6.96/day from day 6; older EMS tariff specifies day 21. Choose the start day used for your parcel.'},
+    {id:'documents',label:'Customs documentary review',value:70.68,note:'General Post tariff; confirm for EMS'},
+    {id:'inspection',label:'Customs physical examination handling',value:70.68,note:'General Post tariff; confirm for EMS'},
+    {id:'approval',label:'Special import approval processing',value:453.12,note:'EMS 2022 underlying price updated to 18% VAT; authority fee may be extra'},
+    {id:'agency',label:'Government-office examination handling',value:70.68,note:'General Post higher-value case; verify exact applicable bracket'},
+    {id:'telecom',label:'Ministry of Communications inspection',value:47.08,note:'General Post higher-value case; verify applicability'},
+    {id:'poa',label:'Power of attorney prepared by Post',value:94.40,note:'General Post tariff'},
+    {id:'transfer',label:'Transfer clearance paperwork to outside broker',value:82.60,note:'Former EMS ₪81.90 at 17% VAT, updated to 18%; do not combine with ordinary in-house clearance without checking'},
+    {id:'actual',label:'Additional confirmed invoice charge',type:'amount',note:'For any authority fee or EMS cost not listed; enter VAT-inclusive amount'}
+  ],
+  DHL:[
+    {id:'storage',label:'Bonded storage',type:'dhl-storage',note:'After 3 calendar days: ₪5 + ₪1.10/kg per billable day'},
+    {id:'nonroutine',label:'Non-routine customs entry',value:306},
+    {id:'process',label:'Extra clearance processing',value:40},
+    {id:'permit',label:'Import permits and licenses processing',value:160,note:'Certificate cost is separate'},
+    {id:'physical',label:'Customs physical intervention',value:82},
+    {id:'multiline',label:'More than five customs-entry lines',type:'lines',unit:63,note:'₪63 for each line after the first five'},
+    {id:'agency',label:'Other government-agency processing',value:160,note:'Certificate cost is separate; may be alternative to permit-processing fee'},
+    {id:'authorization',label:'Clearance authorization',value:110},
+    {id:'modification',label:'Post-clearance correction',value:320},
+    {id:'release',label:'Release to an external broker',value:210},
+    {id:'notify',label:'Broker notification',value:210},
+    {id:'bonded',label:'Bonded transit',value:190},
+    {id:'temporary',label:'Temporary import/export processing',value:178},
+    {id:'certificate',label:'Additional government certificate cost',type:'amount',note:'Enter actual extra certificate price (not specified by DHL)'}
+  ],
+  FedEx:[
+    {id:'special',label:'Shipment required special clearance / routing',type:'flag',note:'Changes the base fee to ₪270.30 (or ₪76.70 for exempt shipment); not an extra add-on'},
+    {id:'handling',label:'Cargo handling / terminal handling',type:'fedex-handling',note:'₪2.50 per billable kg, minimum ₪11.80; only if charged'},
+    {id:'storage',label:'Shipment kept in storage',type:'fedex-storage',note:'From day 4; depends on billable weight'},
+    {id:'physical',label:'Physical customs inspection',value:94.4,note:'Triggers FedEx special-clearance bracket as well'},
+    {id:'multiline',label:'More than five classified items/lines',type:'lines',unit:23.6,note:'₪23.60 per extra classification line'},
+    {id:'poa',label:'Power of attorney / importer declaration',value:150},
+    {id:'transfer',label:'Transfer documents to own customs broker',value:259.6},
+    {id:'processing',label:'Self-assessed deficit processing',value:283.2},
+    {id:'split',label:'Split an examined shipment',value:43.6,note:'Also requires a physical examination (included automatically unless already selected)'},
+    {id:'vet',label:'Veterinary authority approval',value:129.8+55,note:'Plus ₪94.40 examination, added once; includes ₪55 authority fee'},
+    {id:'pharma',label:'Pharmaceutical approval',value:129.8,note:'Plus ₪94.40 examination, added once; ministry fee may be extra'},
+    {id:'agriculture',label:'Agriculture approval',value:129.8,note:'Plus ₪94.40 examination, added once; government fee may be extra'},
+    {id:'transport',label:'Transport Ministry approval',value:129.8,note:'Plus ₪94.40 examination, added once'},
+    {id:'standards',label:'Standards Institute application',value:413,note:'Government authority fee may be extra'},
+    {id:'telecom',label:'Communications Ministry application',value:413},
+    {id:'medical',label:'Medical-device approval application',value:413},
+    {id:'industry',label:'Economy/Industry Ministry application',value:413},
+    {id:'permit',label:'Import permit application',value:413},
+    {id:'cold',label:'Refrigerated or frozen storage',type:'fedex-cold',note:'Published two storage tiers; choose actual rate quoted to you'},
+    {id:'actual',label:'Additional authority fee',type:'amount',note:'For unknown authority fees or separate storage invoices'}
+  ]
+};
+const feeNodes={};
+const feeCarriers=document.getElementById('feeCarriers');
+function formParams(carrier,spec){
+  if(spec.type==='ems-storage'||spec.type==='dhl-storage'||spec.type==='fedex-storage'||spec.type==='fedex-cold'){
+    return `<label for="p_${carrier}_${spec.id}">Calendar days since arrival</label><input id="p_${carrier}_${spec.id}" type="number" min="0" step="1" inputmode="numeric" placeholder="Days" ${spec.type==='fedex-cold'?'value="1"':''}>`+(spec.type==='ems-storage'?`<label for="t_${carrier}_${spec.id}">First billed day</label><input id="t_${carrier}_${spec.id}" type="number" min="1" step="1" value="6" title="Try 21 for the old EMS-specific tariff">`:'')+(spec.type==='fedex-cold'?`<label for="t_${carrier}_${spec.id}">Type</label><select id="t_${carrier}_${spec.id}" aria-label="Cold storage tier" style="height:34px;border:1px solid #cad5e3;border-radius:8px"><option value="low">₪52.10 + ₪31/day</option><option value="high">₪78 + ₪47/day</option></select>`:'');
+  }
+  if(spec.type==='lines')return `<label for="p_${carrier}_${spec.id}">Total declaration lines</label><input id="p_${carrier}_${spec.id}" type="number" min="1" step="1" value="6">`;
+  if(spec.type==='amount')return `<label for="p_${carrier}_${spec.id}">Amount (₪, incl. VAT if due)</label><input id="p_${carrier}_${spec.id}" type="number" min="0" step="0.01" placeholder="₪ amount">`;
+  return '';
+}
+function setupFees(){
+  for(const [carrier,specs] of Object.entries(feeDefs)){
+    const panel=document.createElement('details');panel.className='fee-carrier';panel.id=`fees_${carrier}`;
+    panel.innerHTML=`<summary>${carrier}<small>${carrier==='EMS'?'Some exceptional fees provisional':carrier==='DHL'?'2026 customs-services guide':'Official personal-import tariff'}</small></summary><div class="fee-list">${specs.map(spec=>{
+      const key=`${carrier}_${spec.id}`,hasParams=['ems-storage','dhl-storage','fedex-storage','fedex-cold','lines','amount'].includes(spec.type);
+      return `<div class="fee-item"><label class="fee-row"><input id="f_${key}" type="checkbox"><span class="fee-text">${spec.label}${spec.value!==undefined?` <span class="extra-pill">₪${money(spec.value)}</span>`:''}${spec.note?`<span class="fee-note">${spec.note}</span>`:''}</span></label>${hasParams?`<div class="fee-params hidden" id="inputs_${key}">${formParams(carrier,spec)}</div>`:''}</div>`;
+    }).join('')}</div><div class="fee-source">${carrier==='EMS'?`<a href="${tariffLinks.EMS}" target="_blank" rel="noopener">EMS tariff (2022)</a> · <a href="${tariffLinks.post}" target="_blank" rel="noopener">General Post import tariff</a>. General-Post extras may not apply to EMS.`:carrier==='DHL'?`<a href="${tariffLinks.DHL}" target="_blank" rel="noopener">DHL Israel 2026 customs-services guide, p.22</a> · <a href="https://express-resource.dhl.com/IL23-WF-GovermentApp.html" target="_blank" rel="noopener">DHL permit desk (VAT example)</a>`:`<a href="${tariffLinks.FedEx}" target="_blank" rel="noopener">FedEx Israel personal-import tariff</a> (fee amounts VAT-inclusive).`}</div>`;
+    feeCarriers.append(panel);
+    if(carrier==='DHL'){
+      const vatRow=document.createElement('label');vatRow.className='fee-row';vatRow.style='margin:0 12px 14px;border-top:1px solid #dce4ed;padding-top:11px';
+      vatRow.innerHTML='<input id="dhlFeeVat" type="checkbox" checked><span class="fee-text">Add 18% VAT to optional DHL service fees<span class="fee-note">Default on. DHL’s official permits desk lists its ₪160 charge before VAT (₪188.80 including VAT). The guide itself does not specify whether every listed fee includes VAT. Turn off if invoiced VAT-inclusive.</span></span>';
+      panel.append(vatRow);
+      vatRow.querySelector('input').addEventListener('change',render);
+    }
+    for(const spec of specs){const key=`${carrier}_${spec.id}`,checkbox=document.getElementById('f_'+key),params=document.getElementById('inputs_'+key);
+      const fields=params?[...params.querySelectorAll('input,select')]:[];
+      feeNodes[key]={checkbox,fields};
+      checkbox.addEventListener('change',()=>{if(params)params.classList.toggle('hidden',!checkbox.checked);render();});
+      fields.forEach(f=>{f.addEventListener('input',render);f.addEventListener('change',render);});
+    }
+  }
+}
+setupFees();
+function active(carrier,id){return feeNodes[`${carrier}_${id}`]?.checkbox.checked||false;}
+function param(carrier,id){const field=feeNodes[`${carrier}_${id}`]?.fields[0];return field?nval(field):NaN;}
+function feeCalc(carrier,kg){
+  const breakdown=[],warnings=[];
+  const add=(label,val)=>{if(val>0)breakdown.push([label,val]);};
+  const days=(id)=>{const n=param(carrier,id);if(!Number.isInteger(n)||n<0){warnings.push(`${carrier}: enter non-negative whole calendar days for ${id}`);return null;}return n;};
+  const checkWeight=(id)=>{if(!pos(kg)){warnings.push(`${carrier}: enter billable weight in kg for ${id}`);return false;}return true;};
+  const fee=feeDefs[carrier];
+  for(const def of fee){if(!active(carrier,def.id)||def.type==='flag')continue;
+    const id=def.id,t=def.type;
+    if(t==='ems-storage'){
+      const d=days(id),first=feeNodes[`${carrier}_${id}`].fields[1]?nval(feeNodes[`${carrier}_${id}`].fields[1]):6; if(!Number.isInteger(first)||first<1)warnings.push('EMS: enter a valid first billed day');else if(d!==null)add(def.label,Math.max(0,d-first+1)*6.96);
+    }else if(t==='dhl-storage'){
+      const d=days(id);if(d!==null&&checkWeight(id))add(def.label,Math.max(0,d-3)*(5+1.10*kg));
+    }else if(t==='fedex-storage'){
+      const d=days(id);if(d!==null&&checkWeight(id)){
+        const n=Math.max(0,d-3);
+        const price=kg<=10?Math.max(11.8,7.1*n):kg<=50?Math.max(14.2,9.5*n):9.5*Math.ceil(kg/50)*n;
+        if(n)add(def.label,price);
+      }
+    }else if(t==='fedex-cold'){
+      const d=days(id);if(d!==null&&checkWeight(id)&&d>0){
+        const high=feeNodes[`${carrier}_${id}`].fields[1].value==='high';
+        add(def.label,(high?78:52.1)+(high?47:31)*d*Math.ceil(kg/100));
+      }
+    }else if(t==='fedex-handling'){
+      if(checkWeight(id))add(def.label,Math.max(11.8,2.5*kg));
+    }else if(t==='lines'){
+      const lines=param(carrier,id);if(!Number.isInteger(lines)||lines<1)warnings.push(`${carrier}: enter a valid number of declaration lines`);
+      else add(def.label,Math.max(0,lines-5)*def.unit);
+    }else if(t==='amount'){
+      const amount=param(carrier,id);if(!nonneg(amount))warnings.push(`${carrier}: enter an amount for ${def.label}`);
+      else add(def.label,amount);
+    }else if(def.value!==undefined){add(def.label,def.value);}
+  }
+  if(carrier==='FedEx'){
+    const compound=['split','vet','pharma','agriculture','transport'].filter(id=>active(carrier,id));
+    if(compound.length&&!active(carrier,'physical'))add('FedEx inspection required by selected service (once)',94.4);
+  }
+  if(carrier==='DHL'&&document.getElementById('dhlFeeVat')?.checked){const taxable=breakdown.filter(row=>row[0]!=='Additional government certificate cost').reduce((sum,row)=>sum+row[1],0);add('VAT on optional DHL services (18%; configurable)',0.18*taxable);}
+  return {breakdown,warnings,total:breakdown.reduce((s,x)=>s+x[1],0)};
+}
+function fedexSpecial(){return ['special','physical','split','vet','pharma','agriculture','transport','standards','telecom','medical','industry','permit'].some(x=>active('FedEx',x));}
 function state(){
   const r=Object.fromEntries(rateIds.map(id=>[id,nval(el[id])]));
-  const P0=nval(el.product),S0=nval(el.shipping),S20=nval(el.shipping2);
-  let missing=[];
+  const P0=nval(el.product),S0=nval(el.shipping),S20=nval(el.shipping2),kg=nval(el.weightKg);
+  const missing=[];
   if(!nonneg(P0))missing.push('a valid, nonnegative product price');
   if(!nonneg(S0))missing.push('a valid, nonnegative shipping price');
   if(!pos(r.usdNis))missing.push('the USD→NIS customs rate');
+  if(el.weightKg.value!==''&&(!pos(kg)))missing.push('a positive billable weight or leave weight blank');
   const currencies=[el.productCurrency.value,el.shippingCurrency.value];
-  if(el.useSecond.checked){
-    if(!nonneg(S20))missing.push('a valid second shipping price');
-    currencies.push(el.shippingCurrency2.value);
-  }
-  for(const c of new Set(currencies)){
-    if(c!=='USD'&&c!=='NIS'&&!pos(r[rateIdFor(c)])){
-      missing.push(`the USD→${c} rate`);
-      if(['CNY','TWD','HKD','PHP','EUR'].includes(c)) document.getElementById('extraRates').open=true;
-    }
+  if(el.useSecond.checked){if(!nonneg(S20))missing.push('a valid second shipping price');currencies.push(el.shippingCurrency2.value);}
+  for(const c of new Set(currencies))if(c!=='USD'&&c!=='NIS'&&!pos(r[rateIdFor(c)])){
+    missing.push(`the USD→${c} rate`);
+    if(['CNY','TWD','HKD','PHP','EUR'].includes(c))document.getElementById('extraRates').open=true;
   }
   if(missing.length)return {missing};
   const P=amountUSD(P0,el.productCurrency.value,r),S=amountUSD(S0,el.shippingCurrency.value,r);
-  const quotes=[{P,S,label:'Shipping quote 1',ems:calcEMS(P,S,r.usdNis),dhl:calcDHL(P,S,r.usdNis)}];
-  if(el.useSecond.checked){const S2=amountUSD(S20,el.shippingCurrency2.value,r);quotes.push({P,S:S2,label:'Shipping quote 2',ems:calcEMS(P,S2,r.usdNis),dhl:calcDHL(P,S2,r.usdNis)});}
+  const options=Object.fromEntries(['EMS','DHL','FedEx'].map(k=>[k,feeCalc(k,kg)]));
+  const buildQuote=(shipping,label)=>{
+    const results=[calcEMS(P,shipping,r.usdNis),calcDHL(P,shipping,r.usdNis),calcFedEx(P,shipping,r.usdNis,kg,fedexSpecial())];
+    for(const x of results){
+      x.extra=options[x.label];x.total=x.vat+x.base.reduce((s,row)=>s+row[1],0)+x.extra.total;
+      x.valid=x.extra.warnings.length===0;
+    }
+    return {P,S:shipping,label,results};
+  };
+  const quotes=[buildQuote(S,'Shipping quote 1')];
+  if(el.useSecond.checked)quotes.push(buildQuote(amountUSD(S20,el.shippingCurrency2.value,r),'Shipping quote 2'));
   return {quotes,r};
 }
 function line(label,n){return `<div><dt>${label}</dt><dd>₪${money(n)}</dd></div>`;}
 function card(x,better){
-  const lines=x.label==='EMS' ? [line('Import VAT',x.vat),line('Handling fee',x.service),line('Credit fee',x.credit),line('VAT on service + credit fees',x.serviceVat),line('Fixed additional fee',x.fixed)] : [line('Import VAT',x.vat),line('DHL base fee',x.fee1),line('DHL supplemental fee',x.fee2),line('DHL additional fee',x.fee3)];
-  return `<article class="result-card ${better?'cheapest':''}"><div class="result-head"><h3>${x.label}</h3>${better?'<span class="better">LOWER CHARGES</span>':''}</div><div class="charge"><span class="currency">₪</span>${money(x.total)}</div><div class="tier">${x.tier}</div><dl>${lines.join('')}<div class="total-row">${line('Total charges',x.total)}</div></dl></article>`;
+  let rows=[line('Import VAT',x.vat),...x.base.filter(row=>row[1]>0).map(row=>line(...row))];
+  if(x.extra.breakdown.length)rows.push(`<div class="service-charges"><dt><strong>Selected conditional charges</strong></dt></div>`,...x.extra.breakdown.map(row=>line(...row)));
+  return `<article class="result-card ${better?'cheapest':''}"><div class="result-head"><h3>${x.label}</h3>${better?'<span class="better">LOWER CHARGES</span>':''}</div><div class="charge"><span class="currency">₪</span>${x.valid?money(x.total):'—'}</div><div class="tier">${x.tier}</div><dl>${rows.join('')}<div class="total-row">${line('Total estimated charges',x.valid?x.total:NaN)}</div></dl>${x.extra.warnings.length?`<div class="warning-line">${x.extra.warnings.join('<br>')}</div>`:''}</article>`;
 }
 let lastText='';
 function render(){
@@ -142,12 +303,15 @@ function render(){
   const cards=[],txt=[];
   for(const [i,q] of s.quotes.entries()){
     if(s.quotes.length>1)cards.push(`<div style="grid-column:1/-1;font-weight:750;margin:${i?'12px':'0'} 0 -5px">${q.label}</div>`);
-    cards.push(card(q.ems,q.ems.total<q.dhl.total-0.005));cards.push(card(q.dhl,q.dhl.total<q.ems.total-0.005));
+    const valid=q.results.filter(x=>x.valid);
+    const best=Math.min(...valid.map(x=>x.total));
+    for(const x of q.results)cards.push(card(x,x.valid&&valid.length>1&&x.total<best+.005));
     cards.push(`<div class="conversions" style="grid-column:1/-1">Product: ${dollars(q.P)} · Shipping: ${dollars(q.S)} · CIF: ${dollars(q.P+q.S)} · CIF: ₪${money((q.P+q.S)*s.r.usdNis)}</div>`);
-    txt.push(`${q.label}: Product ${dollars(q.P)}; shipping ${dollars(q.S)}; CIF ${dollars(q.P+q.S)}. EMS charges ₪${money(q.ems.total)} (VAT ₪${money(q.ems.vat)}, handling ₪${money(q.ems.service)}, credit ₪${money(q.ems.credit)}, VAT on fees ₪${money(q.ems.serviceVat)}, fixed ₪${money(q.ems.fixed)}). DHL charges ₪${money(q.dhl.total)} (VAT ₪${money(q.dhl.vat)}, fees ₪${money(q.dhl.fee1+q.dhl.fee2+q.dhl.fee3)}).`);
+    txt.push(`${q.label} · Product ${dollars(q.P)} · Shipping ${dollars(q.S)} · CIF ${dollars(q.P+q.S)}`);
+    for(const x of q.results)txt.push(` ${x.label}: ${x.valid?'₪'+money(x.total):'Incomplete inputs'} | VAT ₪${money(x.vat)} | ${[...x.base,...x.extra.breakdown].map(row=>row[0]+' ₪'+money(row[1])).join(' | ')}${x.extra.warnings.length?' | '+x.extra.warnings.join('; '):''}`);
   }
   results.innerHTML=cards.join('');
-  lastText=`Estimated Israeli import charges, using user-defined formulas and exchange rate 1 USD = ₪${s.r.usdNis}\n${txt.join('\n')}`;
+  lastText=`Estimated import fees (USD/NIS customs ${s.r.usdNis})\n${txt.join('\n')}`;
 }
 const storageKey='israel-import-calculator-v4';
 const overrides=Object.fromEntries(rateIds.map(k=>[k,false]));
@@ -398,7 +562,9 @@ autoBtn.addEventListener('click',()=>{
   updateSourceLabels();save();render();refreshRates();
 });
 document.getElementById('clear').addEventListener('click',()=>{
-  el.product.value='';el.shipping.value='';el.shipping2.value='';el.useSecond.checked=false;
+  el.product.value='';el.shipping.value='';el.shipping2.value='';el.weightKg.value='';el.useSecond.checked=false;
+  document.getElementById('dhlFeeVat').checked=true;
+  for(const [key,obj] of Object.entries(feeNodes)){obj.checkbox.checked=false;const params=document.getElementById('inputs_'+key);if(params)params.classList.add('hidden');for(const f of obj.fields){if(f.type==='number')f.value=key==='EMS_storage'&&f.id.startsWith('t_')?'6':key.endsWith('_multiline')?'6':'';}}
   el.productCurrency.value='USD';el.shippingCurrency.value='USD';el.shippingCurrency2.value='USD';
   save();render();el.product.focus();
 });
